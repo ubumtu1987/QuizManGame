@@ -1,0 +1,57 @@
+.container{
+	
+  width: 968px;
+  margin-left:auto; 
+  margin-right:auto;
+
+}
+
+
+
+#testing{
+  text-align:center;
+  min-height : 100px;
+  font-size:60px;
+}
+
+
+.todoTT{
+ text-align:center;
+  min-height : 100px;
+  font-size: 20px;
+  color:red;
+
+}
+
+.todoT{
+ text-align:center;
+  min-height : 100px;
+
+}
+
+.displayMan{
+ min-height : 100px;
+ width : 500px; 
+ margin-left: 240px;
+ border:solid;
+
+}
+.modified{
+   text-align:center;
+   font-size:50px;  
+}
+
+.centerMan{
+  text-align:center;
+  width:300px;
+  margin-left: 310px;
+  font-size:30px;
+
+}
+
+
+.enterMans{
+  text-align:center;
+  font-size:30px;
+}
+

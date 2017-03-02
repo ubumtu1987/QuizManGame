@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+  <div class = "container">
+    <div class = "row">
+        <div calss = "col-md-12 testing" ID = "testing">
+              Totally Trivial Trivial!!
+        </div> 
+    </div>
+
+    <div class = "row">
+        <div class = "col-md-12 testing todoTT" >
+               
+        </div> 
+    </div>
+
+    <div class = "row">
+        <div class = "col-md-12 displayMan" >
+              
+                  <div class   = "hello modified">
+                       button click 
+                  </div>
+            
+        </div>
+    </div>
+
+    <div class = "row">
+        <div class = "col-md-12 testing todoT" >
+               
+        </div> 
+    </div>
+    
+
+    <div class = "row">
+        <div class = "col-md-12 displayWomen" >
+                  
+        </div>
+    </div>
+ </div>
+
+ <script type="text/javascript">
+ $(document).ready(function() {
+     var buttonCheking = false;
+     var timechanger = 10;
+     var timeCount = null;
+     var wronganswered = 0; 
+     var lastpoint = null;
+     var anwserCheck = false; 
+     var test = true;
+     var count = 0; 
+     //var test = false; 
+     var position = 0 ;
+     var selectClass = null;
+     var quizPeople = []; 
+     var timeInterval; 
+     var questions = [" 1 + 1 = ?", " 2 - 2 = ?",  " 3 * 5 = ? " , " 20 / 5 = ? ", " 7 - 2 * 5  = ? " ];
+     var selectList =  new Array(5);
+     selectList[0]= ["0", "1", "2", "3"];
+     selectList[1]= ["-1", "0", "1", "2"];
+     selectList[2]= [ "12", "13", "14", "15"];
+     selectList[3]= [ "4", "5", "6", "7"];
+     selectList[4]= [ "1", "25" , "-3", "-6"];
+     var answerSheet = ["2", "0", "15", "4" , "-3"]; 
+
+     function quizMan ( question, listOfChoose, answer ){
+     this.questionofS = question;
+     this.listofSelect = listOfChoose;
+     this.anwerOfQ = answer;     
+     this.result = true;
+
+
+
+     }
+     
+     for( var i = 0 ; i < 5 ; i ++ ){
+          var inputQuiz = new quizMan (questions[i], selectList[i],
+             answerSheet[i]);
+          
+
+          quizPeople.push(inputQuiz);
+
+        }
+      
+
+
+    
+
+
+     
+
+
+     $( document ).on( 'click', '.modified', function () {
+      
+      
+        //console.log(quizPeople);
+
+
+
+        timeInterval = setInterval( currentData, 1000*1);
+           
+     });
+
+    
+
+    
+
+
+     var currentData =  function(){
+          clearInterval(timeInterval);
+
+        if(test == true){
+          test = false;
+          $(".displayMan").html("");
+          $(".displayWomen").html(""); 
+          if(quizPeople.length != 0){
+
+          //clearInterval(timeInterval);
+          var number = position;
+          selectClass = quizPeople[number];
+          
+          var goodDiv = $("<div>"); 
+          console.log(selectClass);
+          goodDiv.text(selectClass.questionofS);
+          goodDiv.addClass("enterMans");
+          $(".displayMan").html(goodDiv);
+          //console.log(selectClass); 
+            for( var j = 0 ; j < selectClass.listofSelect.length; j++ ){
+              var secondDiv = $("<div>"); 
+              secondDiv.addClass("centerMan QuizButton");
+              secondDiv.attr("value", selectClass.listofSelect[j]);
+              secondDiv.text(selectClass.listofSelect[j]);
+              $(".displayWomen").append(secondDiv); 
+            
+            }
+
+          }else{
+             var goodsDiv = $("<div>"); 
+             goodsDiv.addClass("enterMans");
+             var stringVal = count;
+             var showshow = wronganswered;
+             var showthat = 5 - count - wronganswered;
+             goodsDiv.text("your number of correct answers : " +stringVal);
+             $(".displayMan").html(goodsDiv);
+             //oodsDiv.text("your number of worng answers : " +wronganswered);
+             
+             var oodsDiv = $("<div>"); 
+             oodsDiv.addClass("enterMans");
+             oodsDiv.text("your number of wrong answers : " +wronganswered);
+              $(".displayMan").append(oodsDiv);
+             var oodsDivd = $("<div>"); 
+             oodsDivd.addClass("enterMans");
+             oodsDivd.text("your number of unanswers : " +showthat); 
+              $(".displayMan").append(oodsDivd);
+
+              var rebutton = $("<div>"); 
+              rebutton.addClass("centerMan restartT");
+              rebutton.text("RESTART");
+              $(".displayWomen").append(rebutton);
+
+              
+             
+             //goodsDiv.text("your number of unanswers : " + showthat);
+             timechanger = -1;
+          }
+
+            
+            timeInterval = setInterval( nextPhase, 1000);
+
+      }    
+  }
+
+/*
+    var displayTime = function(){
+           var checking = timechanger; 
+           console.log(checking);
+           if(checking != 0 ){
+              var ts = $("<div>");
+              ts.addClass("centerMan");  
+              ts.text(checking);
+              $(".todoTT").html(ts);
+              timechanger = timechanger -1 ; 
+           }else{
+              var ts = $("<div>");
+              ts.addClass("centerMan");  
+              ts.text(checking);
+              $(".todoTT").html(ts);
+              clearInterval(timeCount); 
+           }
+           
+        
+   
+
+
+    }
+
+*/
+
+
+          $( document ).on( 'click', '.QuizButton', function () {
+             clearInterval(timeInterval); 
+            // clearInterval(timeCount);
+             
+             var compareString = $(this).attr("value");
+             //var answerDiv = $("<div>");
+             //answerDiv.addClass("centerMan"); 
+             //lastpoint = selectClass.anwerOfQ;
+             if(selectClass.anwerOfQ ===  compareString ){
+                  
+                 anwserCheck =true;
+                 //buttonCheking = false;
+                 //debugger;
+                 //count++;
+               
+                      //clearInterval(timeInterval);
+             }else{
+                
+                 //debugger;
+                 buttonCheking = true;
+                 //wronganswered ++ ;
+               
+             } 
+                
+                      
+         test =true; 
+                      //$(".displayMan").html(answerDiv);
+                      //clearInterval(timeInterval);  
+                      
+
+         timechanger = 0 ;
+         timeInterval = setTimeout( nextPhase, 1000*1);
+                      //clearInterval(timeInterval);
+                    
+
+
+             
+
+
+     });
+
+
+
+
+      var nextPhase =  function(){
+        //clearInterval(timeInterval);
+        var checking = timechanger; 
+           console.log(checking);
+           if(checking > 0 ){
+              //$('.remaining').html(checking);
+              $(".todoTT").html(checking);
+              timechanger = timechanger -1 ; 
+           }else if (checking <0 ){
+              clearInterval(timeInterval);
+              $(".todoTT").html("Game is Over");
+              
+
+
+         }else{
+        
+             clearInterval(timeInterval);
+              $(".todoTT").html(0+"");
+        lastpoint = selectClass.anwerOfQ;
+           for( var k = 0 ; k <  quizPeople.length ; k++){
+           if(selectClass.questionofS ==quizPeople[k].questionofS )quizPeople. splice(k, 1);
+                         
+            }
+        var answerDiv = $("<div>");
+        answerDiv.addClass("centerMan"); 
+        var SecondDiv = $("<div>");
+        SecondDiv.addClass("enterMans"); 
+        //clearInterval(timeInterval);
+        if(anwserCheck == false){
+           answerDiv.text("Answer : " +lastpoint); 
+          $(".displayWomen").html(answerDiv);
+          SecondDiv.text("wrong!");
+          $(".displayMan").html(SecondDiv);
+           test =true;
+           if( buttonCheking == true){
+           debugger;  
+           wronganswered++;
+            buttonCheking = false; 
+           }
+        }else{
+          $(".displayWomen").html("");
+          answerDiv.text("correct!");
+          $(".displayWomen").html(answerDiv);
+          anwserCheck = false;
+          count++;
+        }
+        
+        timechanger = 10;
+
+        timeInterval = setTimeout( currentData, 1000*2);
+        }
+   
+    }
+         
+        
+     
+   
+   $( document ).on( 'click', '.restartT', function () {
+     location.href='final2.html';
+   });
+
+  
+
+  $(document).on('mouseover', '.centerMan', function() {
+     $(this).css("background-color", "yellow");
+   //do something
+   });
+
+
+   $(document).on('mouseout', '.centerMan', function() {
+   //do something 
+     $(this).css("background-color", "white");
+    });
+
+
+
+    $(document).on('mouseover', '.hello', function() {
+     $(this).css("background-color", "purple");
+   //do something
+   });
+
+   $(document).on('mouseout', '.hello', function() {
+   //do something 
+     $(this).css("background-color", "white");
+    });
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+});
+
+
+</script>   
+
+
+
+</body>
+
+
+
+
+</html>
+
+
+
+  
